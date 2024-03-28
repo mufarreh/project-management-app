@@ -16,6 +16,12 @@ function App() {
   }
 
   function handleAddProject(projectData) {
+    if (
+      projectData.title.trim() === undefined ||
+      projectData.title.trim() === ""
+    ) {
+      return alert("Enter Valid Data");
+    }
     setProjectState((prevState) => {
       const projectId = Math.random();
       const newProject = { ...projectData, id: projectId };
@@ -25,12 +31,23 @@ function App() {
         projects: [...prevState.projects, newProject],
       };
     });
-    console.log(projectState);
+  }
+
+  function handleCancel() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: [...prevState.projects],
+      };
+    });
   }
 
   let content;
   if (projectState.selectedProjectId === null) {
-    content = <NewProject onAdd={handleAddProject}></NewProject>;
+    content = (
+      <NewProject onAdd={handleAddProject} onCancel={handleCancel}></NewProject>
+    );
   } else if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected handleClick={handleClick}></NoProjectSelected>;
   }
