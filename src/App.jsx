@@ -9,19 +9,13 @@ function App() {
     projects: [],
   });
 
-  function handleClick() {
+  function handleStartProject() {
     setProjectState((prevProject) => {
       return { ...prevProject, selectedProjectId: null };
     });
   }
 
   function handleAddProject(projectData) {
-    if (
-      projectData.title.trim() === undefined ||
-      projectData.title.trim() === ""
-    ) {
-      return alert("Enter Valid Data");
-    }
     setProjectState((prevState) => {
       const projectId = Math.random();
       const newProject = { ...projectData, id: projectId };
@@ -49,13 +43,15 @@ function App() {
       <NewProject onAdd={handleAddProject} onCancel={handleCancel}></NewProject>
     );
   } else if (projectState.selectedProjectId === undefined) {
-    content = <NoProjectSelected handleClick={handleClick}></NoProjectSelected>;
+    content = (
+      <NoProjectSelected handleClick={handleStartProject}></NoProjectSelected>
+    );
   }
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectSidebar
         projects={projectState.projects}
-        handleClick={handleClick}
+        handleClick={handleStartProject}
       ></ProjectSidebar>
       <div className="w-2/3">{content}</div>
     </main>

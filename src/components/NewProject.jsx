@@ -1,15 +1,24 @@
 import Input from "./Input.jsx";
 import { useRef } from "react";
+import Modal from "./Modal.jsx";
 
 export default function NewProject({ onAdd, onCancel }) {
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
+  const modal = useRef();
 
   function handleSave() {
     const enteredTitle = title.current.value;
     const enteredDescription = description.current.value;
     const enteredDueDate = dueDate.current.value;
+    if (
+      enteredTitle.trim() === "" ||
+      enteredDescription.trim() === "" ||
+      enteredDueDate.trim() === ""
+    ) {
+      return modal.current.open();
+    }
     onAdd({
       title: enteredTitle,
       description: enteredDescription,
@@ -19,6 +28,9 @@ export default function NewProject({ onAdd, onCancel }) {
 
   return (
     <div className="w-[35rem] mt-16">
+      <Modal ref={modal}>
+        <h2>Invalid Input</h2>
+      </Modal>
       <menu className="flex items-center justify-end gap-4 my-4">
         <li>
           <button
