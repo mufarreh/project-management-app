@@ -36,6 +36,14 @@ function App() {
       };
     });
   }
+  function handleSelectProject(id) {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
+      };
+    });
+  }
 
   let content;
   if (projectState.selectedProjectId === null) {
@@ -51,7 +59,8 @@ function App() {
     <main className="h-screen my-8 flex gap-8">
       <ProjectSidebar
         projects={projectState.projects}
-        handleClick={handleStartProject}
+        onAddProject={handleStartProject}
+        onSelectProject={handleSelectProject}
       ></ProjectSidebar>
       <div className="w-2/3">{content}</div>
     </main>
