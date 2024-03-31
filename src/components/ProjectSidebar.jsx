@@ -14,16 +14,21 @@ export default function ProjectSidebar({
         <Button onClick={onAddProject}>+ Add Project</Button>
       </div>
       <ul className="mt-8">
-        {projects.map((innerObject) => (
-          <li key={innerObject.id}>
-            <button
-              onClick={() => onSelectProject(innerObject.id)}
-              className=" w-full text-left px-2 py-2 mt-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800 rounded-sm"
-            >
-              {innerObject.title}
-            </button>
-          </li>
-        ))}
+        {projects.map((innerObject) => {
+          let cssClasses =
+            "w-full text-left px-2 py-2 mt-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800 rounded-sm";
+
+          return (
+            <li key={innerObject.id}>
+              <button
+                onClick={() => onSelectProject(innerObject.id)}
+                className={cssClasses}
+              >
+                {innerObject.title}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </aside>
   );

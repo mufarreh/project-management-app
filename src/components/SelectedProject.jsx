@@ -1,6 +1,13 @@
-import Button from "./Button";
+import Button from "./Button.jsx";
+import Tasks from "./Tasks.jsx";
 
-export default function SelectedProject({ project }) {
+export default function SelectedProject({
+  project,
+  handleDelete,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     day: "numeric",
@@ -13,13 +20,14 @@ export default function SelectedProject({ project }) {
           <h1 className="text-3xl font-bold mb-2 text-stone-600">
             {project.title}
           </h1>
-          <Button>Delete</Button>
+          <Button onClick={handleDelete}>Delete</Button>
         </div>
         <p className="mb-4 text-stone-400">{formattedDate}</p>
         <p className="text-stone-600 whitespace-pre-wrap">
           {project.description}
         </p>
       </header>
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks}></Tasks>
     </div>
   );
 }
