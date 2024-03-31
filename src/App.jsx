@@ -107,6 +107,7 @@ function App() {
         projects={projectState.projects}
         onAddProject={handleStartProject}
         onSelectProject={handleSelectProject}
+        selectedProjectId={projectState.selectedProjectId}
       ></ProjectSidebar>
       <div className="w-2/3">{content}</div>
     </main>
