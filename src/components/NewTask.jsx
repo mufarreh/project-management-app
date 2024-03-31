@@ -7,7 +7,7 @@ export default function NewTask({ onAdd }) {
   }
   function handleClick() {
     if (enteredTask.trim() === "") {
-      return;
+      return alert("invalid task");
     }
     onAdd(enteredTask);
     setEnteredTask("");

@@ -7,12 +7,14 @@ export default function SelectedProject({
   onAddTask,
   onDeleteTask,
   tasks,
+  selectedProjectId,
 }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     day: "numeric",
     month: "short",
   });
+
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -27,7 +29,13 @@ export default function SelectedProject({
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks}></Tasks>
+
+      <Tasks
+        onAdd={onAddTask}
+        onDelete={onDeleteTask}
+        tasks={tasks}
+        selectedProjectId={selectedProjectId}
+      ></Tasks>
     </div>
   );
 }

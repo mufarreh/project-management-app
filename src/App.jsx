@@ -20,7 +20,7 @@ function App() {
       };
       return {
         ...prevState,
-        tasks: [newTask, ...prevState.tasks],
+        tasks: [...prevState.tasks, newTask],
       };
     });
   }
@@ -90,6 +90,7 @@ function App() {
       onAddTask={handleAddTask}
       onDeleteTask={handleDeleteTask}
       tasks={projectState.tasks}
+      selectedProjectId={projectState.selectedProjectId}
     ></SelectedProject>
   );
   if (projectState.selectedProjectId === null) {
